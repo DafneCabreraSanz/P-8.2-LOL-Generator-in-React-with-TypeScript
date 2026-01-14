@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-// interface Joke { type: string, setup: string, punchline: string, id: number }
-import type { Joke } from "./types/joke";
-// const response = await fetch("https://official-joke-api.appspot.com/random_joke")
+// Tipo Joke: interface Joke { type, setup, punchline, id }
+import type { Joke } from "./types/Joke";
+// Servicio API: fetch("https://official-joke-api.appspot.com/random_joke")
 import { getRandomJoke } from "./Services/jokesServices";
 
 import { Title } from "./Components/Title";
@@ -11,21 +11,21 @@ import { Buttons } from "./Components/Button";
 import { JokeGeneral } from "./Components/JokeGeneral";
 
 const App: React.FC = () => {
-  // let joke: Joke
+  // Estado: let joke: Joke
   const [joke, setJoke] = useState<Joke | null>(null);
+  // Control de visibilidad del punchline
   const [showPunchline, setShowPunchline] = useState<boolean>(false);
-  // const resultContainer = document.getElementById("result"); resultContainer.style.display = "none"
+  // Control de visibilidad: resultContainer.style.display
   const [showResult, setShowResult] = useState<boolean>(false);
-  // const errorContainer = document.getElementById("error"); errorContainer.style.display = "none"
+  // Control de visibilidad: errorContainer.style.display
   const [showError, setShowError] = useState<boolean>(false);
 
-  // newJokeButton.addEventListener("click", async () => {...})
+  // Evento: newJokeButton.addEventListener("click", async () => {...})
   const handleNewJoke = async (): Promise<void> => {
     try {
-      // joke = await response.json()
+      // const response = await fetch(...); joke = await response.json()
       const data: Joke = await getRandomJoke();
       setJoke(data);
-      // punchContainer.innerHTML = ""
       setShowPunchline(false);
       // errorContainer.style.display = "none"
       setShowError(false);
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     }
   };
 
-  // punchButton.addEventListener("click", () => { showPunchLine(joke.punchline); })
+  // Evento: punchButton.addEventListener("click", () => { showPunchLine(joke.punchline) })
   const handleShowPunchline = (): void => {
     setShowPunchline(true);
   };

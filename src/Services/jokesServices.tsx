@@ -1,4 +1,4 @@
-import type { Joke } from "../types/joke";
+import type { Joke } from "../types/Joke";
 
 export const getRandomJoke = async (): Promise<Joke> => {
   const response = await fetch("https://official-joke-api.appspot.com/random_joke");
