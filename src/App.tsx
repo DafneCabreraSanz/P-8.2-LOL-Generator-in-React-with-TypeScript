@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 
-// Tipo Joke: interface Joke { type, setup, punchline, id }
+// interface Joke { type: string, setup: string, punchline: string, id: number }
 import type { Joke } from "./types/Joke";
-// Servicio API: fetch("https://official-joke-api.appspot.com/random_joke")
+// const response = await fetch("https://official-joke-api.appspot.com/random_joke")
 import { getRandomJoke } from "./Services/jokesServices";
 
 import { Title } from "./Components/Title";
@@ -11,21 +11,21 @@ import { Buttons } from "./Components/Button";
 import { JokeGeneral } from "./Components/JokeGeneral";
 
 const App: React.FC = () => {
-  // Estado: let joke: Joke
+  // let joke: Joke
   const [joke, setJoke] = useState<Joke | null>(null);
-  // Control de visibilidad del punchline
   const [showPunchline, setShowPunchline] = useState<boolean>(false);
-  // Control de visibilidad: resultContainer.style.display
+  // const resultContainer = document.getElementById("result"); resultContainer.style.display = "none"
   const [showResult, setShowResult] = useState<boolean>(false);
-  // Control de visibilidad: errorContainer.style.display
+  // const errorContainer = document.getElementById("error"); errorContainer.style.display = "none"
   const [showError, setShowError] = useState<boolean>(false);
 
-  // Evento: newJokeButton.addEventListener("click", async () => {...})
+  // newJokeButton.addEventListener("click", async () => {...})
   const handleNewJoke = async (): Promise<void> => {
     try {
-      // const response = await fetch(...); joke = await response.json()
+      // joke = await response.json()
       const data: Joke = await getRandomJoke();
       setJoke(data);
+      // punchContainer.innerHTML = ""
       setShowPunchline(false);
       // errorContainer.style.display = "none"
       setShowError(false);
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     }
   };
 
-  // Evento: punchButton.addEventListener("click", () => { showPunchLine(joke.punchline) })
+  // punchButton.addEventListener("click", () => { showPunchLine(joke.punchline); })
   const handleShowPunchline = (): void => {
     setShowPunchline(true);
   };
@@ -66,7 +66,7 @@ const App: React.FC = () => {
       {showError && (
         <div id="error">
           <p>Something went wrong with the connection, it's no joke :(</p>
-          <img src="/img/sad-pikachu.gif" alt="no joke :(" />
+          <img src="img/sad-pikachu.gif" alt="no joke :(" />
         </div>
       )}
     </div>

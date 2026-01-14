@@ -15,7 +15,7 @@ export const Gif: React.FC<GifProps> = ({ punchline }) => {
     // punchContainer.innerHTML += `<img src="img/lol${num}.gif" alt="LOL GIF"/>`
     <div className="punch-container">
       <p>{punchline}</p>
-      <img src={`/img/lol${randomGif}.gif`} alt="LOL GIF" />
+      <img src={`img/lol${randomGif}.gif`} alt="LOL GIF" />
     </div>
   );
 };
