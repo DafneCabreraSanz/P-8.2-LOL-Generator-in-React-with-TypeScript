@@ -23,7 +23,7 @@ export const JokeGeneral: React.FC<JokeGeneralProps> = ({ joke }) => {
       <p id="setup-container">{joke.setup}</p>
 
       {/* <button id="punch-button">: punchButton.addEventListener("click", ...) */}
-      <Buttons onClick={() => setShowPunchline(true)} title="Reveal Punchline" />
+      <Buttons handleClick={() => setShowPunchline(true)} title="Reveal Punchline" />
 
       {/* Punchline container: <div class="punch-container"> */}
       {showPunchline && <Gif punchline={joke.punchline} />}

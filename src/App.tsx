@@ -14,16 +14,19 @@ import { JokeGeneral } from "./Components/JokeGeneral";
 const App: React.FC = () => {
   // let joke: Joke
   const [joke, setJoke] = useState<Joke | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   // Handler to fetch and display a new joke
   // newJokeButton.addEventListener("click", async () => {...})
   const handleNewJoke = async (): Promise<void> => {
-    try {
-      // joke = await response.json()
-      const data: Joke = await getRandomJoke();
-      setJoke(data);
-    } catch (error) {
+    const data = await getRandomJoke();
+    
+    if (data === null) {
       setJoke(null);
+      setError(true);
+    } else {
+      setJoke(data);
+      setError(false);
     }
   };
 
@@ -34,15 +37,15 @@ const App: React.FC = () => {
       <Title />
 
       {/* <button id="new-joke" class="button">Get Joke</button> */}
-      <Buttons onClick={handleNewJoke} title="Get Joke" />
+      <Buttons handleClick={handleNewJoke} title="Get Joke" />
 
       {/* <div id="result"> */}
-      {joke && (
+      {joke && !error && (
         <JokeGeneral joke={joke} />
       )}
 
       {/* <div id="error"> */}
-      {!joke && (
+      {error && (
         <div id="error">
           <p>Something went wrong with the connection, it's no joke :(</p>
           <img src="img/sad-pikachu.gif" alt="no joke :(" />
