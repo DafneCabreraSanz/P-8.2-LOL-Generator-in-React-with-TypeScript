@@ -1,17 +1,16 @@
 import React from "react";
 
 interface ButtonsProps {
-  onNewJoke: () => void;
+  onClick: () => void;
+  title: string;
 }
 
+// Reusable button component
 // const newJokeButton = <HTMLButtonElement>document.getElementById("new-joke")
-export const Buttons: React.FC<ButtonsProps> = ({ onNewJoke }) => {
+export const Buttons: React.FC<ButtonsProps> = ({ onClick, title }) => {
   return (
-    <div>
-      {/* <button id="new-joke" class="button">Get Joke</button> */}
-      <button className="button" id="new-joke" onClick={onNewJoke}>
-        Get Joke
-      </button>
-    </div>
+    <button className="button" onClick={onClick}>
+      {title}
+    </button>
   );
 };

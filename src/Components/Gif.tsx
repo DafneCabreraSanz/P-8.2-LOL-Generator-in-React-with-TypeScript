@@ -4,6 +4,7 @@ interface GifProps {
   punchline: string;
 }
 
+// Displays the punchline with a random LOL GIF
 // function showPunchLine(punchLine: string = "") {...}
 export const Gif: React.FC<GifProps> = ({ punchline }) => {
   // let num = Math.round(Math.random() * 6)

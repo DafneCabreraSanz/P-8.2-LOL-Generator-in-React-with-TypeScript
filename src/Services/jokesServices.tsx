@@ -1,5 +1,6 @@
 import type { Joke } from "../types/Joke";
 
+// Fetches a random joke from the Official Joke API
 export const getRandomJoke = async (): Promise<Joke> => {
   const response = await fetch("https://official-joke-api.appspot.com/random_joke");
 

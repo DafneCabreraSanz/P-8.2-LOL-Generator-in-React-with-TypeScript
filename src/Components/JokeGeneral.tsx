@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import type { Joke } from "../types/Joke";
 import { Gif } from "./Gif";
+import { Buttons } from "./Button";
 
 interface JokeGeneralProps {
   joke: Joke;
 }
 
-// Componente que representa: <div id="result">
+// Displays joke setup and handles punchline reveal
+// Component that represents: <div id="result">
 export const JokeGeneral: React.FC<JokeGeneralProps> = ({ joke }) => {
   const [showPunchline, setShowPunchline] = useState<boolean>(false);
 
+  // Reset punchline visibility when joke changes
   useEffect(() => {
     setShowPunchline(false);
   }, [joke.id]);
@@ -20,11 +23,9 @@ export const JokeGeneral: React.FC<JokeGeneralProps> = ({ joke }) => {
       <p id="setup-container">{joke.setup}</p>
 
       {/* <button id="punch-button">: punchButton.addEventListener("click", ...) */}
-      <button className="button" id="punch-button" onClick={() => setShowPunchline(true)}>
-        Reveal Punchline
-      </button>
+      <Buttons onClick={() => setShowPunchline(true)} title="Reveal Punchline" />
 
-      {/* Contenedor punchline: <div class="punch-container"> */}
+      {/* Punchline container: <div class="punch-container"> */}
       {showPunchline && <Gif punchline={joke.punchline} />}
     </div>
   );

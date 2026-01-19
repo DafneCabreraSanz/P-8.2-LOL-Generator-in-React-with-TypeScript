@@ -10,10 +10,12 @@ import { Title } from "./Components/Title";
 import { Buttons } from "./Components/Button";
 import { JokeGeneral } from "./Components/JokeGeneral";
 
+// Main app component that manages joke state and fetching
 const App: React.FC = () => {
   // let joke: Joke
   const [joke, setJoke] = useState<Joke | null>(null);
 
+  // Handler to fetch and display a new joke
   // newJokeButton.addEventListener("click", async () => {...})
   const handleNewJoke = async (): Promise<void> => {
     try {
@@ -32,7 +34,7 @@ const App: React.FC = () => {
       <Title />
 
       {/* <button id="new-joke" class="button">Get Joke</button> */}
-      <Buttons onNewJoke={handleNewJoke} />
+      <Buttons onClick={handleNewJoke} title="Get Joke" />
 
       {/* <div id="result"> */}
       {joke && (
